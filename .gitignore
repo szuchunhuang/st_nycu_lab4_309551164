@@ -2,5 +2,5 @@
 /shelf/
 /workspace.xml
 /src/main/resources
-/.idea/
+/.idea/*
 lab_4.iml
