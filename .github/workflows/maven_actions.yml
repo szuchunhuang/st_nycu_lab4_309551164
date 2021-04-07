@@ -33,7 +33,7 @@ jobs:
     - run: mvn test
     - run: ls -al
     - run: tree ./target
-    - run: mkdir staging && cp /target/*.jar /staging
+#    - run: mkdir staging && cp /target/*.jar /staging
     - uses: actions/upload-artifact@v2
       with:
         name: my-artifact
