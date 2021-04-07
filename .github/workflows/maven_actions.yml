@@ -30,10 +30,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-#    - run: mvn test
+    - run: mvn test
     - run: mvn package
+    - run: ls -al -R
     - run: tree ./target
-    - run: sudo mkdir staging && cp ./target/*.jar ./staging
+    - run: sudo mkdir staging && sudo cp ./target/*.jar ./staging
     - uses: actions/upload-artifact@v2
       with:
         name: my-artifact
