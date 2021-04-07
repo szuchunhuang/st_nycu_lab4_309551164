@@ -23,6 +23,12 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
+    - run: sudo mkdir staging && sudo cp ./target/*.jar ./staging
+    - uses: actions/upload-artifact@v2
+      with:
+        name: buildJar
+        path: staging
+
 
   Test:
     needs: Compile
@@ -31,13 +37,13 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: mvn test
-    - run: mvn package
+#    - run: mvn package
     - run: ls -al -R
     - run: tree ./target
-    - run: sudo mkdir staging && sudo cp ./target/*.jar ./staging
+    - run: sudo cp -R ./target/surefire-reports/ ./staging
     - uses: actions/upload-artifact@v2
       with:
-        name: my-artifact
+        name: testReport
         path: staging
 
   Assemble:
