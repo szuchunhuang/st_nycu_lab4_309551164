@@ -58,6 +58,6 @@ jobs:
 
       - name: Display structure of downloaded files
         run: ls -R
-        working-directory: staging
+        working-directory: staging/buildJar/
       - run: mvn exec:java
 #      - run: java -jar ./buildJar/lab_4-1.0-SNAPSHOT.jar
