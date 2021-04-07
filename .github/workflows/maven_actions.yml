@@ -22,8 +22,6 @@ jobs:
         distribution: 'adopt'
     - name: Build with Maven
       run: mvn -B package --file pom.xml
-    - run: ls -al
-
 
 
   Test:
@@ -31,7 +29,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - run: ls -al
+    - run: mvn test
     - run: mkdir staging && cp *.jar /staging
     - uses: actions/upload-artifact@v2
       with:
