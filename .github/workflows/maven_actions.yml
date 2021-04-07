@@ -31,6 +31,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: mvn test
+    - run: ls -al
     - run: mkdir staging && cp *.jar /staging
     - uses: actions/upload-artifact@v2
       with:
