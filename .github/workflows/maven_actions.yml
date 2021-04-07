@@ -6,6 +6,7 @@ name: Java CI with Maven
 on:
   push:
     branches: [ main ]
+  
 #  pull_request:
 #    branches: [ main ]
 
@@ -61,3 +62,15 @@ jobs:
         working-directory: staging/buildJar/
 #       - run: mvn exec:java -Dexec.mainClass="Game"
 #      - run: java -jar ./buildJar/lab_4-1.0-SNAPSHOT.jar
+
+  Release:
+      needs: Assemble
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v2
+        - name: Release
+          uses: softprops/action-gh-release@v1
+          if: startsWith(github.ref, 'refs/tags/')
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
