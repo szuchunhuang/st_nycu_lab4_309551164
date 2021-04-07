@@ -6,12 +6,11 @@ name: Java CI with Maven
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
+#  pull_request:
+#    branches: [ main ]
 
 jobs:
-  build:
-
+  Compile:
     runs-on: ubuntu-latest
 
     steps:
@@ -23,3 +22,30 @@ jobs:
         distribution: 'adopt'
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+
+  Test:
+    needs: Compile
+    runs-on: ubuntu-latest
+
+    steps:
+    - run: mkdir staging && cp target/*.jar staging
+    - uses: actions/upload-artifact@v2
+      with:
+        name: my-artifact
+        path: staging
+
+  Assemble:
+    needs: Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/download-artifact@v2
+        with:
+          name: my-artifact
+          path: staging
+
+      - name: Display structure of downloaded files
+        run: ls -R
+        working-directory: staging
