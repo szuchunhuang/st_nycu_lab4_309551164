@@ -59,4 +59,4 @@ jobs:
       - name: Display structure of downloaded files
         run: ls -R
         working-directory: staging
-#      - run: java -jar lab_4-1.0-SNAPSHOT.jar
+      - run: java -jar ./buildJar/lab_4-1.0-SNAPSHOT.jar
