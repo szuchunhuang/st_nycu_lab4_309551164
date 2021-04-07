@@ -33,7 +33,7 @@ jobs:
 #    - run: mvn test
     - run: mvn package
     - run: tree ./target
-    - run: mkdir staging && cp ./target/*.jar /staging
+    - run: sudo mkdir staging && cp ./target/*.jar ./staging
     - uses: actions/upload-artifact@v2
       with:
         name: my-artifact
@@ -54,3 +54,4 @@ jobs:
       - name: Display structure of downloaded files
         run: ls -R
         working-directory: staging
+      - run: java -jar lab_4-1.0-SNAPSHOT.jar
