@@ -29,7 +29,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - run: mkdir staging && cp target/test-classes/*.jar staging
+    - run: mkdir staging && cp -R /target /staging
     - uses: actions/upload-artifact@v2
       with:
         name: my-artifact
