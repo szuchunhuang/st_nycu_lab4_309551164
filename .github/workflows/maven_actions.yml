@@ -64,7 +64,7 @@ jobs:
 #      - run: java -jar ./buildJar/lab_4-1.0-SNAPSHOT.jar
 
   Release:
-      needs: Assemble
+#       needs: Assemble
       runs-on: ubuntu-latest
       steps:
         - name: Checkout
